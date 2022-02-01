@@ -90,7 +90,7 @@ api.setCron = {
 };
 
 /**
- * @api {post} /api/v3/debug/make-admin Sets admin privileges for current user
+ * @api {post} /api/v3/debug/make-admin Sets contributor.admin to true
  * @apiName setCron
  * @apiGroup Development
  * @apiPermission Developers
@@ -104,9 +104,7 @@ api.makeAdmin = {
   async handler (req, res) {
     const { user } = res.locals;
 
-    user.contributor.admin = true; // @TODO make this unnecessary
-    user.contributor.priv.userSupport = true;
-    user.contributor.priv.userSupportPlus = true;
+    user.contributor.admin = true;
 
     await user.save();
 
